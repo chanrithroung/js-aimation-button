@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 2rem;
+            background-color: black;
+            justify-content: center;
+
+        }
+
+        button {
+            font-size: 35px;
+            padding: 15px 50px;
+            border-radius: 40px;
+            border: none;
+            outline: none;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            background-image: linear-gradient(90deg, #0162c8, #557efc);
+
+        }
+        button:nth-child(2) {
+          /* background-image: linear-gradient(); */
+          background-image: linear-gradient(90deg, #755bea, #ff72c0);
+
+        }
+        span {
+          display: block;
+          position: absolute;
+          top: 20px;
+          height: 50px;
+          width: 50px;
+          border-radius: 50%;
+          pointer-events: none;
+          background-color: white;
+          transform: translate(-50%, -50%);
+          animation: ripple 0.8s linear infinite;
+
+        }
+
+        @keyframes ripple {
+          0% {
+            width: 0;
+            height: 0;
+            opacity: 0.4;
+          }
+          
+          100% {
+            width: 200px;
+            height: 200px;
+            opacity: 0;
+          }
+        }
+    </style>
+  </head>
+  <body>
+
+
+    <button class="btn">Button </button>
+    <button class="btn">Button </button>
+
+  </body>
+  <script>
+
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(btn => {
+        btn.addEventListener('click',function (e) {
+            let x = e.clientX - e.target.offsetLeft;
+            let y = e.clientY - e.target.offsetTop;
+            console.log(x);
+            console.log(y);
+
+            const ripple = document.createElement('span');
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+          
+            btn.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 800);
+
+            
+        });
+    });
+       
+  </script>
+</html>
